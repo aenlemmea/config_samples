@@ -1,0 +1,12 @@
+lazy-lock.json
+
+.cache
+/*cache*/
+cache/
+
+auto-save-list/
+eln-cache/
+elpaca/
+transient/
+tree-sitter/
+url/
