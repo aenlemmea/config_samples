@@ -31,7 +31,6 @@ vnoremap ; :
 noremap <space>r <C-^>
 
 " Remaps for fzf
-nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<CR>
 nnoremap <silent> <leader>f :GFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>h :History<CR>
@@ -41,12 +40,14 @@ nnoremap <silent> <leader>h: :History:<CR>
 nnoremap <silent> <leader>se :Rg<CR>
 
 " Remap for COC
+nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<CR>
 nnoremap <leader>cyc :CocCommand yank.clean<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> ree :<C-u>CocList diagnostics<CR>
 nmap <silent> do <Plug>(coc-codeaction)
 nmap <silent> rnm <Plug>(coc-rename)
+nmap <silent> gs :call CocActionAsync('showSignatureHelp')<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -58,6 +59,11 @@ function! s:show_documentation()
   else
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
+endfunction
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <TAB>
@@ -110,9 +116,10 @@ set autoindent
 set copyindent
 set preserveindent
 set shortmess-=S
+set cursorline
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
-set clipboard=unnamed
+highlight CursorLine cterm=reverse ctermbg=White ctermfg=DarkBlue
 
 set clipboard=unnamed
 
