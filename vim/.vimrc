@@ -117,7 +117,7 @@ set shortmess-=S
 set cursorline
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set clipboard=unnamed
-
+set hidden
 highlight CursorLine cterm=reverse ctermbg=White ctermfg=DarkBlue
 " Setup clipboard for wsl using win32yank.
 
