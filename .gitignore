@@ -10,3 +10,7 @@ elpaca/
 transient/
 tree-sitter/
 url/
+
+autoload/
+plugged/
+.netrwhist
