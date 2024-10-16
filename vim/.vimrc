@@ -1,4 +1,4 @@
-" automatically downloads vim-plug to your machine if not found.
+" Automatically downloads vim-plug to your machine if not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -12,6 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bfrg/vim-cpp-modern'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " General Remap
@@ -36,7 +37,6 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>h: :History:<CR>
 nnoremap <silent> <leader>h/ :History/<CR>
-nnoremap <silent> <leader>h: :History:<CR>
 nnoremap <silent> <leader>se :Rg<CR>
 
 " Remap for COC
@@ -71,8 +71,6 @@ inoremap <silent><expr> <TAB>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-
 
 " Setup Options
 
@@ -118,10 +116,10 @@ set preserveindent
 set shortmess-=S
 set cursorline
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set clipboard=unnamed
 
 highlight CursorLine cterm=reverse ctermbg=White ctermfg=DarkBlue
-
-set clipboard=unnamed
+" Setup clipboard for wsl using win32yank.
 
 autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
 

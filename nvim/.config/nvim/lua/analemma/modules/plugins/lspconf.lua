@@ -63,6 +63,9 @@ return {
 				view = {
 					entries = { name = "wildmenu", separator = " ~ " }
 				},
+				experimental = {
+					ghost_text = true
+				},
   				sources = {
     				{name = 'nvim_lsp'},
 					{name = 'async_path'},
