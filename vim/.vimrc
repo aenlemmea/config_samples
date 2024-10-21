@@ -16,6 +16,8 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " General Remap
+
+inoremap <silent><expr> <NUL> coc#refresh()
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
@@ -32,6 +34,7 @@ vnoremap ; :
 noremap <space>r <C-^>
 
 " Remaps for fzf
+command! -nargs=* W w
 nnoremap <silent> <leader>f :GFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>h :History<CR>
@@ -40,6 +43,7 @@ nnoremap <silent> <leader>h/ :History/<CR>
 nnoremap <silent> <leader>se :Rg<CR>
 
 " Remap for COC
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"
 nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<CR>
 nnoremap <leader>cyc :CocCommand yank.clean<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -60,17 +64,6 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Setup Options
 
@@ -118,7 +111,9 @@ set cursorline
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set clipboard=unnamed
 set hidden
+
 highlight CursorLine cterm=reverse ctermbg=White ctermfg=DarkBlue
+
 " Setup clipboard for wsl using win32yank.
 
 autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")

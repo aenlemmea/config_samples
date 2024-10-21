@@ -1,5 +1,6 @@
 truecolor on
-term screen-256color
+# term screen-256color
+term xterm-256color
 # termcapinfo xterm*|rxvt*|kterm*|Eterm*|screen* ti@:te@
 startup_message off
 vbell off

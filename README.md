@@ -2,8 +2,8 @@
 
 Managed by GNU Stow
 
-Actively used: VIM SCREEN 
+Actively used: VIM TAB\_RS
 
-The emacs and nvim configs are for my personal testing and may not be updated/used/fixed.
+The emacs, screen and nvim configs are for my personal testing and may not be updated/used/fixed.
 
 
