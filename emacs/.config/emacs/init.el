@@ -1,13 +1,18 @@
 (setq native-comp-speed 3)
 (setq native-comp-async-report-warnings-errors 'silent)
 
+(auto-save-mode nil)
+(setq c-basic-offset 4)
+(setq c-guess-guessed-basic-offset 4)
+(setq c-ts-mode-indent-offset 4)
+(setq c++-ts-mode-indent-offset 4)
+(setq c++-ts-mode-basic-offet 4)
+(setq c-ts-mode-indent-offset 4)
+
 ;; (set-frame-font "DejaVu Sans Mono 28")
 (menu-bar-mode -1)
 (blink-cursor-mode 0)
 ;; (cua-mode)
-(server-start)
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 (winner-mode 1)
@@ -53,6 +58,7 @@
        (default-directory repo))
   (add-to-list 'load-path (if (file-exists-p build) build repo))
   (unless (file-exists-p repo)
+
     (make-directory repo t)
     (when (< emacs-major-version 28) (require 'subr-x))
     (condition-case-unless-debug err
@@ -146,11 +152,11 @@
    :defer t
    :ensure t)
  
- (use-package company-cmake
-   :after cmake-mode
-   :defer t
-   :ensure 	(:build t
- 		  :host github))
+;;  (use-package company-cmake
+;;    :after cmake-mode
+;;    :defer t
+;;    :ensure 	(:build t
+;;  		  :host github))
 
 (dolist (lang treesit-language-source-alist)
   (unless (treesit-language-available-p (car lang))
@@ -176,7 +182,6 @@
       auto-window-vscroll nil
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
-        
 (delete-selection-mode +1)
 (setq create-lockfiles nil)
 
@@ -200,55 +205,7 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-(transient-mark-mode 1) 
+(transient-mark-mode 1)
 ;; (electric-indent-mode -1)
 
-; START TABS CONFIG
-;; Create a variable for our preferred tab width
-(setq custom-tab-width 4)
-
-;; Two callable functions for enabling/disabling tabs in Emacs
-(defun disable-tabs () (setq indent-tabs-mode nil))
-(defun enable-tabs  ()
-  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
-  (setq indent-tabs-mode t)
-  (setq tab-width custom-tab-width))
-
-;; Hooks to Enable Tabs
-(add-hook 'prog-mode-hook 'enable-tabs)
-;; Hooks to Disable Tabs
-(add-hook 'lisp-mode-hook 'disable-tabs)
-(add-hook 'emacs-lisp-mode-hook 'disable-tabs)
-(add-hook 'c++-ts-mode-hook 'enable-tabs)
-(add-hook 'c-ts-mode-hook 'enable-tabs)
-
-;; Language-Specific Tweaks
-(setq-default python-indent-offset custom-tab-width) ;; Python
-(setq-default js-indent-level custom-tab-width)      ;; Javascript
-
-;; Making electric-indent behave sanely
-(setq-default electric-indent-inhibit t)
-
-;; Make the backspace properly erase the tab instead of
-;; removing 1 space at a time.
-(setq backward-delete-char-untabify-method 'hungry)
-
-;; (OPTIONAL) Shift width for evil-mode users
-;; For the vim-like motions of ">>" and "<<".
-(setq-default evil-shift-width custom-tab-width)
-
-(setq-default c-basic-offset custom-tab-width)
-(setq-default standard-indent custom-tab-width)
-;; WARNING: This will change your life
-;; (OPTIONAL) Visualize tabs as a pipe character - "|"
-;; This will also show trailing characters as they are useful to spot.
-(setq whitespace-style '(face tabs tab-mark trailing))
-(custom-set-faces
- '(whitespace-tab ((t (:foreground "#636363")))))
-(setq whitespace-display-mappings
-  '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
-(global-whitespace-mode) ; Enable whitespace mode everywhere
-; END TABS CONFIG
-
-(setq-default evil-auto-indent nil)
 (setq evil-vsplit-window-right t)

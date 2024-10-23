@@ -1,3 +1,5 @@
+workspace: []
+
 key_bindings:
   - action: SelectInteractive
     keys: ctrl-K
