@@ -1,9 +1,14 @@
-## DOTFILES
+## Config Samples
 
-Managed by GNU Stow
+Earlier these were my dotfiles. Currently I have migrated to a different setup.
 
-Actively used: VIM TAB\_RS
+The VIM/NVIM clipboard is setup according to WSL2 with [win32yank](https://github.com/equalsraf/win32yank) and requires it being installed on Winwdows.
+I use TAB_RS over GNU Screen due to its ease of use.
 
-The emacs, screen and nvim configs are for my personal testing and may not be updated/used/fixed.
+Although this repo is supposed to be archived, I do update the configs to fix/update/migrate accordingly from time to time hence.
 
+
+----
+
+Actively Used: VIM TAB_RS
 
